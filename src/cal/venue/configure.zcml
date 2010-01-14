@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="cal.venue">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="cal.venue: default"
+        directory="profiles/default"
+        description="cal.venue default profile: Installs core components of the website."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+</configure>
