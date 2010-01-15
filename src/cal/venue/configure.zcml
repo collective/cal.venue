@@ -1,7 +1,12 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="cal.venue">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <include package=".browser" />
 
     <genericsetup:registerProfile
         name="default"

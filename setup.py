@@ -29,7 +29,7 @@ setup(name='cal.venue',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'archetpes.schemaextender',
+          'archetypes.schemaextender',
       ],
       entry_points="""
       # -*- Entry points: -*-

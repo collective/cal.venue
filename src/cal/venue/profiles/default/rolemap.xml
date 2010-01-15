@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="cal.venue: Add Venue Folder" acquire="False">
+        <role name="Manager" />
+        <role name="Contributor" />
+    </permission>
+    <permission name="cal.venue: Add Venue" acquire="False">
+        <role name="Manager" />
+        <role name="Owner" />
+        <role name="Contributor" />
+    </permission>
+  </permissions>
+</rolemap>

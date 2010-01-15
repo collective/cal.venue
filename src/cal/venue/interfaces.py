@@ -4,6 +4,6 @@ class IVenueFolder(Interface):
     """ Marker interface for VenueFolders
     """
 
-class VenueFolder(Interface):
+class IVenue(Interface):
     """ Marker interface for Venues
     """

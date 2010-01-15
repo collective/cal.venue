@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="cal.venue">
+
+    <browser:resource
+        name="venuefolder_icon.png"
+        image="venuefolder_icon.png"
+        />
+    <browser:resource
+        name="venue_icon.png"
+        image="venue_icon.png"
+        />
+
+    <browser:page
+        for="..interfaces.IVenue"
+        name="view"
+        class=".venueview.VenueView"
+        permission="zope2.View"
+        />
+
+</configure>
