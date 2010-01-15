@@ -8,6 +8,10 @@
 
     <include package=".browser" />
 
+    <include package="archetypes.schemaextender" />
+    <adapter factory=".extender.ATEventExtender" />
+    <adapter factory=".extender.ATEventModifier" />
+
     <genericsetup:registerProfile
         name="default"
         title="cal.venue: default"
