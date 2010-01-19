@@ -1,11 +1,18 @@
-from zope.interface import implements
+from zope.interface import implements, directlyProvides
+
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleVocabulary
+import pycountry
+
+from plone.memoize import instance
 
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
+#from Products.ATCountryWidget.Widget import CountryWidget
 
 from cal.venue.interfaces import IVenue
-from cal.venue.config import PROJECTNAME
+from cal.venue.config import PROJECTNAME,DEFAULT_COUNTRY
 from cal.venue import MsgFact as _
 
 VenueSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
@@ -54,12 +61,16 @@ VenueSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         required=False,
         searchable=True,
         languageIndependent=True,
+        vocabulary_factory=u"cal.venue.CountryVocabulary",
+        enforceVocabulary=True,
+        default=DEFAULT_COUNTRY,
         storage=atapi.AnnotationStorage(),
-		widget = atapi.StringWidget(
+		widget=atapi.SelectionWidget(
             label = _(u"State"),
-			description = _(u""),
+			description = _(u"Select the Country the venue is located in"),
         ),
 	),
+
 	atapi.StringField('contactName',
         required=False,
         searchable=True,
@@ -138,6 +149,9 @@ VenueSchema['description'].storage = atapi.AnnotationStorage()
 VenueSchema['description'].widget.visible = {'view': 'invisible',
                                              'edit': 'invisible'}
 
+VenueSchema['location'].widget.visible = {'view': 'hidden',
+                                          'edit': 'hidden'}
+
 schemata.finalizeATCTSchema(VenueSchema,
                             folderish=False,
                             moveDiscussion=False)
@@ -168,3 +182,12 @@ class Venue(base.ATCTContent):
 
 
 atapi.registerType(Venue, PROJECTNAME)
+
+@instance.memoize
+def CountryVocabulary(context):
+    """Vocabulary factory for countries regarding to ISO3166
+    """
+    items = [(r.name.encode('utf-8'), r.numeric)
+             for r in pycountry.countries]
+    return SimpleVocabulary.fromItems(items)
+directlyProvides(CountryVocabulary, IVocabularyFactory)

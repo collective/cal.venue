@@ -8,9 +8,16 @@
 
     <include package=".browser" />
 
+    <!-- include package="Products.ATVocabularyManager" /-->
     <include package="archetypes.schemaextender" />
+    <!-- include package="archetypes.schemaextender" file="caching.zcml" /-->
     <adapter factory=".extender.ATEventExtender" />
     <adapter factory=".extender.ATEventModifier" />
+
+    <utility
+        component=".content.venue.CountryVocabulary"
+        name="cal.venue.CountryVocabulary"
+    />
 
     <genericsetup:registerProfile
         name="default"

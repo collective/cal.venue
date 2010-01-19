@@ -13,9 +13,16 @@
         />
 
     <browser:page
+        for="..interfaces.IVenueFolder"
+        name="view"
+        template="venuefolderview.pt"
+        permission="zope2.View"
+     />
+
+    <browser:page
         for="..interfaces.IVenue"
         name="view"
-        class=".venueview.VenueView"
+        template="venueview.pt"
         permission="zope2.View"
         />
 

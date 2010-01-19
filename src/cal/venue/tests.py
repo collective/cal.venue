@@ -1,5 +1,6 @@
 import unittest
-
+import doctest
+from interlude import interact
 from zope.testing import doctestunit
 from zope.component import testing
 from Testing import ZopeTestCase as ztc
@@ -25,14 +26,17 @@ class TestCase(ptc.PloneTestCase):
         def tearDown(cls):
             pass
 
+optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
 
 def test_suite():
     return unittest.TestSuite([
 
         # Unit tests
-        #doctestunit.DocFileSuite(
-        #    'README.txt', package='cal.venue',
-        #    setUp=testing.setUp, tearDown=testing.tearDown),
+        doctestunit.DocFileSuite(
+            'README.txt', package='cal.venue',
+            optionflags=optionflags,
+            globs={'interact': interact,},
+            setUp=testing.setUp, tearDown=testing.tearDown),
 
         #doctestunit.DocTestSuite(
         #    module='cal.venue.mymodule',

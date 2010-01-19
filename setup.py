@@ -30,7 +30,13 @@ setup(name='cal.venue',
           'setuptools',
           # -*- Extra requirements: -*-
           'archetypes.schemaextender',
+          'pycountry',
+          #'Products.ATCountryWidget',
+          #'Products.ATVocabularyManager',
       ],
+      extras_require = dict(
+          test = ['interlude',],
+      ),
       entry_points="""
       # -*- Entry points: -*-
 

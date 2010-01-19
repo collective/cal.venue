@@ -2,7 +2,7 @@ from zope.component import adapts
 from zope.interface import implements
 from Products.Archetypes import atapi
 from Products.ATContentTypes.interfaces import IATEvent
-from archetypes.schemaextender.interfaces import ISchemaExtender
+from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
 from archetypes.schemaextender.field import ExtensionField
 from cal.venue import MsgFact as _
@@ -11,7 +11,7 @@ class ReferenceFieldExtender(ExtensionField, atapi.ReferenceField):
     """This field is capable of Extending predefined schemas."""
 
 class ATEventExtender(object):
-    implements(ISchemaExtender)
+    implements(IOrderableSchemaExtender)
     adapts(IATEvent)
 
     fields = [
@@ -33,6 +33,12 @@ class ATEventExtender(object):
     def getFields(self):
         return self.fields
 
+    def getOrder(self, order):
+        schemata_default = order['default']
+        schemata_default.remove('venue')
+        schemata_default.insert(6, 'venue')
+        return order
+
 class ATEventModifier(object):
     implements(ISchemaModifier)
     adapts(IATEvent)
@@ -41,8 +47,6 @@ class ATEventModifier(object):
         self.context = context
 
     def fiddle(self, schema):
-        schema['attendees'].widget.visible = {'view': 'hidden',
-                                              'edit': 'hidden'}
         schema['location'].widget.visible = {'view': 'hidden',
                                              'edit': 'hidden'}
         schema['contactName'].widget.visible = {'view': 'hidden',
@@ -51,5 +55,3 @@ class ATEventModifier(object):
                                                  'edit': 'hidden'}
         schema['contactPhone'].widget.visible = {'view': 'hidden',
                                                  'edit': 'hidden'}
-        schema['subject'].widget.visible = {'view': 'hidden',
-                                            'edit': 'hidden'}

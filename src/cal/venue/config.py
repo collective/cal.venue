@@ -1,5 +1,5 @@
 PROJECTNAME = "cal.venue"
-
+DEFAULT_COUNTRY = "040" # Austria
 ADD_PERMISSIONS = {
     "Venue Folder" : "cal.venue: Add Venue Folder",
     "Venue"        : "cal.venue: Add Venue",

@@ -20,18 +20,18 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <div metal:use-macro="python:context.widget('street1', mode='view')" />
-        <div metal:use-macro="python:context.widget('street2', mode='view')" />
-        <div metal:use-macro="python:context.widget('zipCode', mode='view')" />
-        <div metal:use-macro="python:context.widget('city', mode='view')" />
-        <div metal:use-macro="python:context.widget('state', mode='view')" />
-        <div metal:use-macro="python:context.widget('contactName', mode='view')" />
-        <div metal:use-macro="python:context.widget('contactEmail', mode='view')" />
-        <div metal:use-macro="python:context.widget('contactPhone', mode='view')" />
-        <div metal:use-macro="python:context.widget('url', mode='view')" />
-        <div metal:use-macro="python:context.widget('cityMap', mode='view')" />
+        <div metal:use-macro="python:context.widget('street1', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('street2', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('zipCode', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('city', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('state', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('contactName', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('contactEmail', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('contactPhone', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('url', mode='view')" /><br />
+        <div metal:use-macro="python:context.widget('cityMap', mode='view')" /><br />
 
-        <div tal:condition="text" metal:use-macro="python:context.widget('text', mode='view')" />
+        <div tal:condition="text" metal:use-macro="python:context.widget('text', mode='view')" /><br />
 
         <div metal:use-macro="context/document_relateditems/macros/relatedItems">
             show related items if they exist
