@@ -25,7 +25,6 @@
  <property name="default_view">view</property>
  <property name="view_methods">
   <element value="view"/>
-  <element value="folder_summary_view"/>
  </property>
 
  <alias from="(Default)" to="(dynamic view)"/>
