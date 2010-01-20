@@ -31,7 +31,7 @@ class ATEventExtender(object):
         self.context = context
 
     def getFields(self):
-        # just a test
+        ## just a test
         # self.context.schema._fields['location'] = self.fields[0]
         return self.fields
 
