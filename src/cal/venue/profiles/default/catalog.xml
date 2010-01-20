@@ -1,0 +1,7 @@
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+    <column value="street_1"/>
+    <column value="street_2"/>
+    <column value="zip_code"/>
+    <column value="city"/>
+    <column value="state"/>
+</object>
