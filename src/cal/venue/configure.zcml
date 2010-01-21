@@ -23,7 +23,8 @@
         name="default"
         title="cal.venue: default"
         directory="profiles/default"
-        description="cal.venue default profile: Installs core components of the website."
+        description="cal.venue default profile: Installs the Venue add-on for
+                     ATEvents in Plone."
         provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
