@@ -12,6 +12,8 @@ TODO
 
 - Internationalize it
 - Write tests
+- Provide location attribute and getLocation getter which get their values from
+  either venue or venue_notes. Done via an adpater?
 - Bump version to 1.0 after that is done
 
 

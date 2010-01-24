@@ -7,3 +7,7 @@ class IVenueFolder(Interface):
 class IVenue(Interface):
     """ Marker interface for Venues
     """
+
+class IEventVenue(Interface):
+    """ Marker interface for ATEvents to provide venue information
+    """
