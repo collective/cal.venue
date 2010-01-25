@@ -15,8 +15,10 @@ from archetypes.schemaextender.interfaces import ISchemaModifier
 from archetypes.schemaextender.field import ExtensionField
 from cal.venue.interfaces import IEventVenue
 
-
 class ReferenceFieldExtender(ExtensionField, atapi.ReferenceField):
+    """This field is capable of Extending predefined schemas."""
+
+class TextFieldExtender(ExtensionField, atapi.TextField):
     """This field is capable of Extending predefined schemas."""
 
 class ATEventExtender(object):
@@ -26,12 +28,13 @@ class ATEventExtender(object):
     adapts(IATEvent)
 
     fields = [
-        ReferenceFieldExtender("location",
+        ReferenceFieldExtender("venue",
             required=False,
-            relationship='isLocationForEvent',
+            searchable=True,
+            languageIndependent=True,
+            relationship='isVenueForEvent',
             multiValued=False,
             allowed_types=('Venue',),
-            storage=atapi.AnnotationStorage(),
             vocabulary_display_path_bound=-1, # Avoid silly Archetypes object title magic
             enforceVocabulary=True,
             widget=atapi.ReferenceWidget(
@@ -39,54 +42,37 @@ class ATEventExtender(object):
                 label = _(u'label_event_location', default=u'Event Location')
                 ),
             ),
+        TextFieldExtender('venue_notes',
+            required=False,
+            searchable=True,
+            languageIndependent=True,
+            validators=('isTidyHtmlWithCleanup',),
+            default_output_type='text/x-html-safe',
+            widget = atapi.RichWidget(
+                label = _(u'label_event_venue_notes',
+                          default=u'Alternativer Veranstaltungsort'),
+                description = _(u'description_event_venue_notes',
+                                default=u'Alternativer Veranstaltungsort oder '\
+                                u'Zusatztext zum Veranstaltungsort'),
+                rows = 3,
+                allow_file_upload=False,
+                ),
+            ),
     ]
 
     def __init__(self, context):
-        ## May not work, because location may exist as an stringfieldproperty
-
-        # from zope.site.hooks import getSite
-        # field = context.getField('location')
-        # if field:
-        #     context.location = field.get(context.__of__(getSite()))
-        #     print context.location
-
-        # if 'startDate' in context.__dict__:
-
-
-        # import pdb;pdb.set_trace()
-        # from zope.site.hooks import getSite
-        # field = context.getField('location')
-        # if field:
-        #    context.location = field.get(context.__of__(getSite()))
-        # import pdb;pdb.set_trace()
-        # if 'location' not in context.__dict__:
-        # import pdb;pdb.set_trace()
-        # if 'startDate' in context.__dict__:
-            # import pdb;pdb.set_trace()
-        # print context.getField('location').get(context.__of__(getSite()))
-        # context.location = context.getField('location').get(context)
-        # print context.location
-        # context.location = atapi.ATFieldProperty('location')
-        # print context.location
         self.context = context
 
     def getFields(self):
-        if 'startDate' in self.context.__dict__:
-            print "startdate do"
-
-            # import pdb;pdb.set_trace()
-            from zope.site.hooks import getSite
-            field = self.context.getField('location')
-            if field:
-                self.context.location = field.get(self.context.__of__(getSite()))
-                print "SETTING LOC"
-                print self.context.location
-        else:
-            print "startdate NET do"
-
         return self.fields
 
     def getOrder(self, order):
+        schemata_default = order['default']
+        schemata_default.remove('venue')
+        schemata_default.remove('venue_notes')
+
+        schemata_default.insert(5, 'venue')
+        schemata_default.insert(6, 'venue_notes')
         return order
 
 class ATEventModifier(object):
@@ -97,6 +83,8 @@ class ATEventModifier(object):
         self.context = context
 
     def fiddle(self, schema):
+        schema['location'].widget.visible = {'view': 'hidden',
+                                             'edit': 'hidden'}
         schema['contactName'].widget.visible = {'view': 'hidden',
                                                 'edit': 'hidden'}
         schema['contactEmail'].widget.visible = {'view': 'hidden',

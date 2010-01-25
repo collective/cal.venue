@@ -26,4 +26,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="Products.ATContentTypes.interfaces.IATEvent"
+        name="event_view"
+        template="event_view.pt"
+        permission="zope2.View"
+        />
+
 </configure>

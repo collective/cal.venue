@@ -181,11 +181,13 @@ class Venue(base.ATCTContent):
     text = atapi.ATFieldProperty('text')
 
     def __str__(self):
-        return "%s %s %s %s %s" % (self.title, self.street_1, self.street_2,
+        # import pdb; pdb.set_trace()
+        txt = '%s %s %s %s %s' % (self.title, self.street_1, self.street_2,
                                   self.zip_code, self.city)
+        return txt.decode('utf-8')
 
-    def __repr__(self):
-        return str(self)
+#    def __repr__(self):
+#        return str(self)
 
 atapi.registerType(Venue, PROJECTNAME)
 
