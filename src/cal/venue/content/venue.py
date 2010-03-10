@@ -183,7 +183,7 @@ class Venue(base.ATCTContent):
     def __str__(self):
         txt = '%s %s %s %s %s' % (self.title, self.street_1, self.street_2,
                                   self.zip_code, self.city)
-        return txt.decode('utf-8')
+        return txt #.decode('utf-8')
 
 
 atapi.registerType(Venue, PROJECTNAME)

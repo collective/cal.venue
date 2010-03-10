@@ -107,7 +107,7 @@
                             </tal:sameday>
                         </td>
                     </tr>
-                    <tr tal:define="venue python:context.getField('venue').getAccessor(context);
+                    <tr tal:define="venue python:str(context.getField('venue').getAccessor(context)() or '');
                                     venue_notes context/venue_notes|nothing"
                         tal:condition="venue|venue_notes">
                         <th i18n:translate="event_where">Where</th>
