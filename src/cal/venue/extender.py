@@ -16,10 +16,10 @@ from archetypes.schemaextender.field import ExtensionField
 from cal.venue.interfaces import IEventVenue
 
 class ReferenceFieldExtender(ExtensionField, atapi.ReferenceField):
-    """This field is capable of Extending predefined schemas."""
+    pass
 
 class TextFieldExtender(ExtensionField, atapi.TextField):
-    """This field is capable of Extending predefined schemas."""
+    pass
 
 class ATEventExtender(object):
     implements(IOrderableSchemaExtender) # Even if the order is not modified,
@@ -45,10 +45,9 @@ class ATEventExtender(object):
         TextFieldExtender('venue_notes',
             required=False,
             searchable=True,
-            languageIndependent=True,
-            validators=('isTidyHtmlWithCleanup',),
-            default_output_type='text/x-html-safe',
-            widget = atapi.RichWidget(
+            default_content_type = 'text/plain',
+            allowable_content_types = ('text/plain',),
+            widget=atapi.TextAreaWidget(
                 label = _(u'label_event_venue_notes',
                           default=u'Alternativer Veranstaltungsort'),
                 description = _(u'description_event_venue_notes',
