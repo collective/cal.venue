@@ -108,8 +108,8 @@
                         </td>
                     </tr>
                     <tr tal:define="venue python:str(context.getField('venue').getAccessor(context)() or '');
-                                    venue_notes context/venue_notes|nothing"
-                        tal:condition="venue|venue_notes">
+                                    venue_notes context/venue_notes"
+                        tal:condition="python:venue or venue_notes">
                         <th i18n:translate="event_where">Where</th>
                         <td class="location">
                             <metal:field use-macro="python:context.widget('venue', mode='view')">
