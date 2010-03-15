@@ -181,10 +181,19 @@ class Venue(base.ATCTContent):
     text = atapi.ATFieldProperty('text')
 
     def __str__(self):
-        txt = '%s %s %s %s %s' % (self.title, self.street_1, self.street_2,
-                                  self.zip_code, self.city)
+        #txt = '%s %s %s %s %s' % (self.title, self.street_1, self.street_2,
+        #                          self.zip_code, self.city)
+        txt = self.title
+        txt += txt and self.street_1 and str(', ' + self.street_1)
+        txt += txt and self.street_2 and str(', ' + self.street_2)
+        txt += txt and (self.zip_code or self.city) and str(', ' + self.zip_code + ' ' + self.city)
         return txt #.decode('utf-8')
 
+    def get_venue_address(self):
+        txt = self.street_1
+        txt += txt and self.street_2 and str(', ' + self.street_2)
+        txt += txt and (self.zip_code or self.city) and str(', ' + self.zip_code + ' ' + self.city)
+        return txt #.decode('utf-8')
 
 atapi.registerType(Venue, PROJECTNAME)
 
