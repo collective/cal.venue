@@ -8,22 +8,48 @@
 <body>
 
 <metal:content-core fill-slot="content-core">
-    <metal:content-core define-macro="content-core">
+<metal:content-core define-macro="content-core">
+<div id="cal-venue-view">
 
-        <tal:field metal:use-macro="python:context.widget('street1', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('street2', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('zipCode', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('city', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('state', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('contactName', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('contactEmail', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('contactPhone', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('url', mode='view')" /><br />
-        <tal:field metal:use-macro="python:context.widget('cityMap', mode='view')" /><br />
+  <table summary="Venue details"
+	i18n:attributes="summary summary_venue_details;">
+  <tr condition="context/get_venue_address">
+	<td i18n:translate="venue_address">Address:</td>
+	<td>
+	  <tal:cond condition="context/street_1"><tal:val replace="context/street_1" /><br /></tal:cond>
+      <tal:cond condition="context/street_2"><tal:val replace="context/street_2" /><br /></tal:cond>
+	  <tal:cond condition="context/zip_code|context/city">
+		<tal:val replace="context/zip_code" />
+		<tal:val replace="context/city" /><br />
+	  </tal:cond>
+	  <tal:cond condition="context/state"><tal:val replace="context/state" /><br /></tal:cond>
+	</td>
+  </tr>
+  <tr condition="context/contact_name">
+	<td i18n:translate="venue_contact_name">Contact Name:</td>
+	<td tal:content="context/contact_name"></td>
+  </tr>
+  <tr condition="context/contact_phone">
+	<td i18n:translate="venue_contact_phone">Contact Telephone:</td>
+	<td tal:content="context/contact_phone"></td>
+  </tr>
+  <tr condition="context/contact_email">
+	<td i18n:translate="venue_contact_email">Contact Email:</td>
+	<td tal:content="context/contact_email"></td>
+  </tr>
+  <tr condition="context/url">
+	<td i18n:translate="venue_contact_web">Contact Web:</td>
+	<td tal:content="context/url"></td>
+  </tr>
+  </table>
 
-        <tal:field metal:use-macro="python:context.widget('text', mode='view')" /><br />
+  <tal:field metal:use-macro="python:context.widget('text', mode='view')" />
 
-    </metal:content-core>
+  <div tal:condition="context/city_map" tal:content="structure context/city_map" />
+
+</div>
+
+</metal:content-core>
 </metal:content-core>
 
 </body>
