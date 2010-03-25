@@ -3,7 +3,7 @@ from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 
-
+from cal.venue import MsgFact as _
 from cal.venue.interfaces import IVenueFolder
 from cal.venue.config import PROJECTNAME
 

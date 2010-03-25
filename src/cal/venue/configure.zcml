@@ -2,11 +2,14 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="cal.venue">
 
     <five:registerPackage package="." initialize=".initialize" />
 
     <include package=".browser" />
+
+    <i18n:registerTranslations directory="locales" />
 
     <include package="archetypes.schemaextender" />
     <!-- include package="archetypes.schemaextender" file="caching.zcml" /-->

@@ -1,0 +1,153 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-03-25 18:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: cal.venue\n"
+
+#: ./content/venue.py:27
+msgid ""
+msgstr ""
+
+#: ./profiles/default/types/Venue_Folder.xml
+msgid "A folder which can contain venues for events."
+msgstr "Ein Ordner, der Veranstaltungsorte für Termine beinhalten kann."
+
+#: ./content/venue.py:137
+msgid "Additional notes"
+msgstr "Zusätzliche Informationen"
+
+#: ./content/venue.py:56
+msgid "City"
+msgstr "Stadt"
+
+#: ./content/venue.py:124
+msgid "City Map HTML Code"
+msgstr "HTML Code für Stadtplan"
+
+#: ./content/venue.py:91
+msgid "Contact Email"
+msgstr "Kontakt Email"
+
+#: ./content/venue.py:80
+msgid "Contact person name"
+msgstr "Kontaktperson"
+
+#: ./content/venue.py:101
+msgid "Contact phone"
+msgstr "Kontakt Telefon"
+
+#: ./content/venue.py:125
+msgid "Iframe HTML Codefor Google Map, OpenStreetMap or the like"
+msgstr "Iframe HTML Code für Google Map, OpenStreetMap o.ä."
+
+#: ./profiles/default/types/Venue.xml
+msgid "Information about venues for events."
+msgstr "Informationen über Veranstaltungsorte"
+
+#: ./content/venue.py:70
+msgid "Select the Country the venue is located in"
+msgstr "Staat, in dem der Veranstaltungsort beheimatet ist."
+
+#: ./content/venue.py:69
+msgid "State"
+msgstr "Staat"
+
+#: ./content/venue.py:26
+msgid "Street 1"
+msgstr "Strasse 1"
+
+#: ./content/venue.py:36
+msgid "Street 2"
+msgstr "Strasse 2"
+
+#: ./content/venue.py:136
+msgid "Text"
+msgstr "Text"
+
+#: ./content/venue.py:112
+msgid "Url"
+msgstr "Webadresse"
+
+#: ./content/venue.py:113
+msgid "Use the form http://WEBSITE.TLD/"
+msgstr "Geben Sie die URL in folgender Form ein: http://URL.EXT"
+
+#: ./profiles/default/types/Venue.xml
+msgid "Venue"
+msgstr "Veranstaltungsort"
+
+#: ./profiles/default/types/Venue_Folder.xml
+msgid "Venue Folder"
+msgstr "Ordner für Veranstaltungsorte"
+
+#: ./content/venue.py:146
+msgid "Venue name"
+msgstr "Name des Veranstaltungsortes"
+
+#: ./content/venue.py:46
+msgid "Zip code"
+msgstr "Postleitzahl"
+
+#. Default: "Alternativer Veranstaltungsort oder Zusatztext zum Veranstaltungsort"
+#: ./extender.py:53
+msgid "description_event_venue_notes"
+msgstr "Alternativer Veranstaltungsort oder Zusatztext zum Veranstaltungsort"
+
+#. Default: "Event Location"
+#: ./extender.py:42
+msgid "label_event_location"
+msgstr "Veranstaltungsort"
+
+#. Default: "Alternativer Veranstaltungsort"
+#: ./extender.py:51
+msgid "label_event_venue_notes"
+msgstr "Alternativer Veranstaltungsort"
+
+#. Default: "Read More…"
+#: ./browser/venuefolderview.pt:49
+msgid "read_more"
+msgstr "Mehr Informationen..."
+
+#. Default: "Venue details"
+#: ./browser/venueview.pt:14
+msgid "summary_venue_details"
+msgstr "Veranstaltungsort Details"
+
+#. Default: "Address:"
+#: ./browser/venueview.pt:17
+msgid "venue_address"
+msgstr "Adresse"
+
+#. Default: "Contact Email:"
+#: ./browser/venueview.pt:37
+msgid "venue_contact_email"
+msgstr "Kontakt Email"
+
+#. Default: "Contact Name:"
+#: ./browser/venueview.pt:29
+msgid "venue_contact_name"
+msgstr "Kontaktperson"
+
+#. Default: "Contact Telephone:"
+#: ./browser/venueview.pt:33
+msgid "venue_contact_phone"
+msgstr "Kontakt Telefon"
+
+#. Default: "Contact Web:"
+#: ./browser/venueview.pt:41
+msgid "venue_contact_web"
+msgstr "Webadresse"
+
