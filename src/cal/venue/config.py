@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+#
+# GNU General Public License (GPL)
+#
 PROJECTNAME = "cal.venue"
 DEFAULT_COUNTRY = "040" # Austria
 ADD_PERMISSIONS = {
