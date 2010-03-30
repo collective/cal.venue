@@ -37,10 +37,4 @@ setup(name='cal.venue',
       extras_require = dict(
           test = ['interlude',],
       ),
-      entry_points="""
-      # -*- Entry points: -*-
-
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
       )
