@@ -47,11 +47,19 @@
 
   <div class="cal-venue-map" tal:condition="context/city_map" tal:content="structure context/city_map" />
   
-  <div class="cal-venue-events" tal:define="refs python:context.getBRefs('isVenueForEvent')" condition="refs">
-	<h3>Veranstaltungen an diesem Ort</h3>
+  <div class="cal-venue-events" tal:define="events view/venue_events" condition="events">
+	<h3>Die nächsten Veranstaltungen an diesem Ort</h3>
   	  <ul>
-	    <tal:loop repeat="obj refs">
-		  <li><a tal:attributes="href obj/absolute_url" tal:content="obj/title">Item Title</a></li>
+	    <tal:loop repeat="event events">
+		  <li>
+			<a tal:attributes="href event/absolute_url" tal:content="event/title">Item Title</a>
+			<span tal:define="start python:event.start();
+							  year python:view.year(start);
+							  month python:view.localized_month(start);
+							  day python:view.day(start);
+							  time python:view.time(start)"
+				  tal:replace="string:${day}. ${month} ${year}, ${time} Uhr" />		  
+		  </li>
 		</tal:loop>
 	  <ul>
   </div>

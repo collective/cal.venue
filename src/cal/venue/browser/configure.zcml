@@ -22,6 +22,7 @@
     <browser:page
         for="..interfaces.IVenue"
         name="view"
+        class=".venueview.VenueView"
         template="venueview.pt"
         permission="zope2.View"
         />
