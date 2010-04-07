@@ -151,3 +151,10 @@ msgstr ""
 msgid "venue_contact_web"
 msgstr ""
 
+#. Default: "Upcoming events at this location"
+msgid "venue_upcoming_events"
+msgstr ""
+
+#. Default: "o'clock"
+msgid "venue_oclock"
+msgstr ""

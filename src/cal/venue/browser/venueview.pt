@@ -48,7 +48,7 @@
   <div class="cal-venue-map" tal:condition="context/city_map" tal:content="structure context/city_map" />
   
   <div class="cal-venue-events" tal:define="events view/venue_events" condition="events">
-	<h3>Die nächsten Veranstaltungen an diesem Ort</h3>
+	<h3 i18n:translate="venue_upcoming_events">Upcoming events at this location</h3>
   	  <ul>
 	    <tal:loop repeat="event events">
 		  <li>
@@ -58,7 +58,8 @@
 							  month python:view.localized_month(start);
 							  day python:view.day(start);
 							  time python:view.time(start)"
-				  tal:replace="string:${day}. ${month} ${year}, ${time} Uhr" />		  
+				  tal:replace="string:${day}. ${month} ${year}, ${time}" />
+			<span i18n:translate="venue_oclock">o'clock</span>				  
 		  </li>
 		</tal:loop>
 	  <ul>
