@@ -11,7 +11,7 @@ import time
 def _fixed_cache_key(method, self, *args, **kwargs):
     # caches for a fixed amount of time
     ts = time.time() // (60*60) # time() in sec. 60sec * 60min = 1h
-    return (ts, args, kwargs)
+    return (self.context, ts, args, kwargs)
 
 class VenueView(BrowserView):
 
@@ -19,7 +19,7 @@ class VenueView(BrowserView):
         self.context = context
         self.request = request
 
-    #@ram.cache(_fixed_cache_key)
+    @ram.cache(_fixed_cache_key)
     def venue_events(self):
         refs = self.context.getBRefs('isVenueForEvent')
         events = []
