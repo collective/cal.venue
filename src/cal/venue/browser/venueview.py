@@ -21,12 +21,15 @@ class VenueView(BrowserView):
 
     @ram.cache(_fixed_cache_key)
     def venue_events(self):
+        wft = getToolByName(self.context,'portal_workflow')
         refs = self.context.getBRefs('isVenueForEvent')
         events = []
         now = DateTime()
         for item in refs:
             try:
-                if item.start() > now or item.end() > now:
+                wf_state = wft.getInfoFor(item, 'review_state', '')
+                if (item.start() > now or item.end() > now)\
+                   and wf_state == 'published':
                     events.append(item)
             except:
                 pass
