@@ -13,7 +13,7 @@
 
   <table summary="Venue details"
 	i18n:attributes="summary summary_venue_details;">
-  <tr condition="context/get_venue_address">
+  <tr tal:condition="context/get_venue_address">
 	<td i18n:translate="venue_address">Address:</td>
 	<td>
 	  <tal:cond condition="context/street_1"><tal:val replace="context/street_1" /><br /></tal:cond>
@@ -25,21 +25,23 @@
 	  <tal:cond condition="context/state"><tal:val replace="context/state" /><br /></tal:cond>
 	</td>
   </tr>
-  <tr condition="context/contact_name">
+  <tr tal:condition="context/contact_name">
 	<td i18n:translate="venue_contact_name">Contact Name:</td>
 	<td tal:content="context/contact_name"></td>
   </tr>
-  <tr condition="context/contact_phone">
+  <tr tal:condition="context/contact_phone">
 	<td i18n:translate="venue_contact_phone">Contact Telephone:</td>
 	<td tal:content="context/contact_phone"></td>
   </tr>
-  <tr condition="context/contact_email">
+  <tr tal:condition="context/contact_email">
 	<td i18n:translate="venue_contact_email">Contact Email:</td>
 	<td tal:content="context/contact_email"></td>
   </tr>
-  <tr condition="context/url">
+  <tr tal:condition="context/url">
 	<td i18n:translate="venue_contact_web">Contact Web:</td>
-	<td tal:content="context/url"></td>
+	<td><a href="" 
+	       tal:attributes="href context/url"
+	       tal:content="context/url"></a></td>
   </tr>
   </table>
 
@@ -47,7 +49,7 @@
 
   <div class="cal-venue-map" tal:condition="context/city_map" tal:content="structure context/city_map" />
   
-  <div class="cal-venue-events" tal:define="events view/venue_events" condition="events">
+  <div class="cal-venue-events" tal:define="events view/venue_events" tal:condition="events">
 	<h3 i18n:translate="venue_upcoming_events">Upcoming events at this location</h3>
   	  <ul>
 	    <tal:loop repeat="event events">

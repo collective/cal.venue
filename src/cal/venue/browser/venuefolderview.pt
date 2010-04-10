@@ -32,17 +32,9 @@
                     </h2>
 
                     <p class="tileBody"
-                       tal:condition="item/street_1 |
-                                      item/street_2 |
-                                      item/zip_code |
-                                      item/city">
-                        <span class="description">
-                            <tal:txt replace="string:${item/street_1}," />
-                            <tal:txt replace="string:${item/street_2}," />
-                            <tal:txt replace="string:${item/zip_code}" />
-                            <tal:txt replace="string:${item/city}." />
-                        </span>
-
+                       tal:condition="item_object/get_venue_address">
+                        <span class="description"
+                              tal:content="item_object/get_venue_address" />
                     </p>
 
                     <p class="tileFooter">
