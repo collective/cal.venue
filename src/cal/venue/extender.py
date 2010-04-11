@@ -69,9 +69,10 @@ class ATEventExtender(object):
         schemata_default = order['default']
         schemata_default.remove('venue')
         schemata_default.remove('venue_notes')
-
-        schemata_default.insert(5, 'venue')
-        schemata_default.insert(6, 'venue_notes')
+        
+        idx = schemata_default.index('endDate')
+        schemata_default.insert(idx+1, 'venue')
+        schemata_default.insert(idx+2, 'venue_notes')
         return order
 
 class ATEventModifier(object):
