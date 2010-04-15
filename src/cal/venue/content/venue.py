@@ -1,15 +1,17 @@
 from zope.interface import implements, directlyProvides
-
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
-import pycountry
 
-from plone.memoize import instance
-
-from Products.Archetypes import atapi
+try:
+    from Products.LinguaPlone import public  as atapi
+except ImportError:
+    # No multilingual support
+    from Products.Archetypes import atapi
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
-#from Products.ATCountryWidget.Widget import CountryWidget
+
+from plone.memoize import instance
+import pycountry
 
 from cal.venue.interfaces import IVenue
 from cal.venue.config import PROJECTNAME,DEFAULT_COUNTRY

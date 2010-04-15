@@ -7,7 +7,12 @@ __docformat__ = 'plaintext'
 
 from zope.component import adapts
 from zope.interface import implements
-from Products.Archetypes import atapi
+
+try:
+    from Products.LinguaPlone import public  as atapi
+except ImportError:
+    # No multilingual support
+    from Products.Archetypes import atapi
 from Products.ATContentTypes import ATCTMessageFactory as _
 from Products.ATContentTypes.interfaces import IATEvent
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
@@ -69,7 +74,7 @@ class ATEventExtender(object):
         schemata_default = order['default']
         schemata_default.remove('venue')
         schemata_default.remove('venue_notes')
-        
+
         idx = schemata_default.index('endDate')
         schemata_default.insert(idx+1, 'venue')
         schemata_default.insert(idx+2, 'venue_notes')

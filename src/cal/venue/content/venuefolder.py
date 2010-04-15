@@ -1,5 +1,10 @@
 from zope.interface import implements
-from Products.Archetypes import atapi
+
+try:
+    from Products.LinguaPlone import public  as atapi
+except ImportError:
+    # No multilingual support
+    from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 
@@ -7,12 +12,11 @@ from cal.venue import MsgFact as _
 from cal.venue.interfaces import IVenueFolder
 from cal.venue.config import PROJECTNAME
 
-VenueFolderSchema = folder.ATFolderSchema.copy() + atapi.Schema((
-    ))
-VenueFolderSchema['title'].storage = atapi.AnnotationStorage()
-VenueFolderSchema['description'].storage = atapi.AnnotationStorage()
+venuefolder_schema = folder.ATFolderSchema.copy()
+venuefolder_schema['title'].storage = atapi.AnnotationStorage()
+venuefolder_schema['description'].storage = atapi.AnnotationStorage()
 
-schemata.finalizeATCTSchema(VenueFolderSchema,
+schemata.finalizeATCTSchema(venuefolder_schema,
                             folderish=True,
                             moveDiscussion=False)
 
@@ -22,7 +26,7 @@ class VenueFolder(folder.ATFolder):
 
     portal_type = "Venue Folder"
     _at_rename_after_creation = True
-    schema = VenueFolderSchema
+    schema = venuefolder_schema
 
     # make them behave like python properties
     # see Product.Archetypes.fieldproperty

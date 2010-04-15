@@ -1,8 +1,13 @@
 from zope.i18nmessageid import MessageFactory
-from cal.venue import config
-
-from Products.Archetypes import atapi
 from Products.CMFCore import utils
+
+try:
+    from Products.LinguaPlone import public  as atapi
+except ImportError:
+    # No multilingual support
+    from Products.Archetypes import atapi
+
+from cal.venue import config
 
 MsgFact = MessageFactory('cal.venue')
 
