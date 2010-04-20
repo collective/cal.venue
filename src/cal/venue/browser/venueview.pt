@@ -22,7 +22,7 @@
 		<tal:val replace="context/zip_code" />
 		<tal:val replace="context/city" /><br />
 	  </tal:cond>
-	  <tal:cond condition="context/state"><tal:val replace="context/state" /><br /></tal:cond>
+	  <tal:cond condition="view/state"><tal:val replace="view/state" /><br /></tal:cond>
 	</td>
   </tr>
   <tr tal:condition="context/contact_name">
@@ -39,7 +39,7 @@
   </tr>
   <tr tal:condition="context/url">
 	<td i18n:translate="venue_contact_web">Contact Web:</td>
-	<td><a href="" 
+	<td><a href=""
 	       tal:attributes="href context/url"
 	       tal:content="context/url"></a></td>
   </tr>
@@ -48,7 +48,7 @@
   <tal:field metal:use-macro="python:context.widget('text', mode='view')" />
 
   <div class="cal-venue-map" tal:condition="context/city_map" tal:content="structure context/city_map" />
-  
+
   <div class="cal-venue-events" tal:define="events view/venue_events" tal:condition="events">
 	<h3 i18n:translate="venue_upcoming_events">Upcoming events at this location</h3>
   	  <ul>
@@ -61,7 +61,7 @@
 							  day python:view.day(start);
 							  time python:view.time(start)"
 				  tal:replace="string:${day}. ${month} ${year}, ${time}" />
-			<span i18n:translate="venue_oclock">o'clock</span>				  
+			<span i18n:translate="venue_oclock">o'clock</span>
 		  </li>
 		</tal:loop>
 	  <ul>

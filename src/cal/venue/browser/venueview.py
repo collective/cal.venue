@@ -7,6 +7,7 @@ from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
 from plone.memoize import ram
 import time
+import pycountry
 
 def _fixed_cache_key(method, self, *args, **kwargs):
     # caches for a fixed amount of time
@@ -35,13 +36,19 @@ class VenueView(BrowserView):
                 pass
         return sorted(events, key=lambda x:(x.start()))
 
+    @property
+    def state(self):
+        state = pycountry.countries.get(numeric=self.context.state)
+        return state.name
+
+
     # peel this out into something more generic
-    
+
     def make_date(self, date):
         if not isinstance(date, DateTime):
             date = DateTime(date)
         return date
-    
+
     def localized_month(self, date):
         date = self.make_date(date)
         util = getToolByName(self.context, 'translation_service')
@@ -49,7 +56,7 @@ class VenueView(BrowserView):
                        domain='plonelocales',
                        context=self.context)
         return month
-    
+
     def localized_month_abbr(self, date):
         date = self.make_date(date)
         util = getToolByName(self.context, 'translation_service')
@@ -57,7 +64,7 @@ class VenueView(BrowserView):
                        domain='plonelocales',
                        context=self.context)
         return month
-    
+
     def localized_day(self, date):
         date = self.make_date(date)
         util = getToolByName(self.context, 'translation_service')
@@ -65,19 +72,19 @@ class VenueView(BrowserView):
                        domain='plonelocales',
                        context=self.context)
         return day
-    
+
     def day(self, date):
         date = self.make_date(date)
         return date.day()
-    
+
     def dayz(self, date):
         date = self.make_date(date)
         return date.dd()
-    
+
     def year(self, date):
         date = self.make_date(date)
         return date.year()
-    
+
     def time(self, date):
         date = self.make_date(date)
         minute = str(date.minute())
