@@ -44,7 +44,8 @@ class ATEventExtender(object):
             enforceVocabulary=True,
             widget=atapi.ReferenceWidget(
                 description = '',
-                label = _(u'label_event_location', default=u'Event Location')
+                label = _(u'label_event_location', default=u'Event Location'),
+                checkbox_bound=1, # use selection widget
                 ),
             ),
         TextFieldExtender('venue_notes',

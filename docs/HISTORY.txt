@@ -3,5 +3,7 @@ Changelog
 
 1.0dev (unreleased)
 -------------------
+- Make venue selection widet in IEvent extender a select widget.
+  [thet]
 
 - Initial release
