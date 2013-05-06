@@ -1,4 +1,0 @@
-cal.venue
-=========
-
->>> interact( locals() )

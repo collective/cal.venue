@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-#
-# GNU General Public License (GPL)
-#
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
@@ -9,10 +5,12 @@ from plone.memoize import ram
 import time
 import pycountry
 
+
 def _fixed_cache_key(method, self, *args, **kwargs):
     # caches for a fixed amount of time
     ts = time.time() // (60*60) # time() in sec. 60sec * 60min = 1h
     return (self.context, ts, args, kwargs)
+
 
 class VenueView(BrowserView):
 
@@ -22,7 +20,7 @@ class VenueView(BrowserView):
 
     @ram.cache(_fixed_cache_key)
     def venue_events(self):
-        wft = getToolByName(self.context,'portal_workflow')
+        wft = getToolByName(self.context, 'portal_workflow')
         refs = self.context.getBRefs('isVenueForEvent')
         events = []
         now = DateTime()
@@ -34,16 +32,14 @@ class VenueView(BrowserView):
                     events.append(item)
             except:
                 pass
-        return sorted(events, key=lambda x:(x.start()))
+        return sorted(events, key=lambda x: (x.start()))
 
     @property
     def state(self):
         state = pycountry.countries.get(numeric=self.context.state)
         return state.name
 
-
     # peel this out into something more generic
-
     def make_date(self, date):
         if not isinstance(date, DateTime):
             date = DateTime(date)
@@ -60,7 +56,7 @@ class VenueView(BrowserView):
     def localized_month_abbr(self, date):
         date = self.make_date(date)
         util = getToolByName(self.context, 'translation_service')
-        month = util.translate(util.month_msgid(date.month(),'a'),
+        month = util.translate(util.month_msgid(date.month(), 'a'),
                        domain='plonelocales',
                        context=self.context)
         return month

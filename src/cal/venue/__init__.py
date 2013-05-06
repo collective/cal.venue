@@ -11,6 +11,7 @@ from cal.venue import config
 
 MsgFact = MessageFactory('cal.venue')
 
+
 def initialize(context):
     """Register content types through Archetypes with Zope and the CMF.
     """

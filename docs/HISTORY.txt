@@ -1,8 +1,16 @@
 Changelog
 =========
 
-1.0dev (unreleased)
+0.2dev (unreleased)
 -------------------
+
+- PEP8 cleanup.
+  [thet]
+
+
+0.1 (unreleased)
+----------------
+
 - Make venue selection widet in IEvent extender a select widget.
   [thet]
 

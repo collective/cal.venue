@@ -3,35 +3,35 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cal.venue">
 
-    <browser:resource
-        name="venuefolder_icon.png"
-        image="venuefolder_icon.png"
-        />
-    <browser:resource
-        name="venue_icon.png"
-        image="venue_icon.png"
-        />
+  <browser:resource
+      name="venuefolder_icon.png"
+      image="venuefolder_icon.png"
+      />
+  <browser:resource
+      name="venue_icon.png"
+      image="venue_icon.png"
+      />
 
-    <browser:page
-        for="..interfaces.IVenueFolder"
-        name="view"
-        template="venuefolderview.pt"
-        permission="zope2.View"
-     />
+  <browser:page
+      for="..interfaces.IVenueFolder"
+      name="view"
+      template="venuefolderview.pt"
+      permission="zope2.View"
+   />
 
-    <browser:page
-        for="..interfaces.IVenue"
-        name="view"
-        class=".venueview.VenueView"
-        template="venueview.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      for="..interfaces.IVenue"
+      name="view"
+      class=".venueview.VenueView"
+      template="venueview.pt"
+      permission="zope2.View"
+      />
 
-    <browser:page
-        for="Products.ATContentTypes.interfaces.IATEvent"
-        name="event_view"
-        template="event_view.pt"
-        permission="zope2.View"
-        />
+  <browser:page
+      for="Products.ATContentTypes.interfaces.IATEvent"
+      name="event_view"
+      template="event_view.pt"
+      permission="zope2.View"
+      />
 
 </configure>
