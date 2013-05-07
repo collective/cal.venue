@@ -24,7 +24,6 @@ setup(name='cal.venue',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
           'archetypes.schemaextender',
           'pycountry',
           #'Products.ATCountryWidget',
