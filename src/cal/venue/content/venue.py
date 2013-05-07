@@ -14,7 +14,7 @@ from plone.memoize import instance
 import pycountry
 
 from cal.venue.interfaces import IVenue
-from cal.venue.config import PROJECTNAME,DEFAULT_COUNTRY
+from cal.venue.config import PROJECTNAME, DEFAULT_COUNTRY
 from cal.venue import MsgFact as _
 
 VenueSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
@@ -39,27 +39,27 @@ VenueSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             description=_(u""),
         ),
     ),
-	atapi.StringField('zipCode',
+    atapi.StringField('zipCode',
         required=False,
         searchable=True,
         languageIndependent=True,
         storage=atapi.AnnotationStorage(),
-		widget = atapi.StringWidget(
-            label = _(u"Zip code"),
-			description = _(u""),
+        widget=atapi.StringWidget(
+            label=_(u"Zip code"),
+            description=_(u""),
         ),
-	),
-	atapi.StringField('city',
+    ),
+    atapi.StringField('city',
         required=False,
         searchable=True,
         languageIndependent=True,
         storage=atapi.AnnotationStorage(),
-		widget = atapi.StringWidget(
-            label = _(u"City"),
-			description = _(u""),
+        widget=atapi.StringWidget(
+            label=_(u"City"),
+            description=_(u""),
         ),
-	),
-	atapi.StringField('state',
+    ),
+    atapi.StringField('state',
         required=False,
         searchable=True,
         languageIndependent=True,
@@ -67,80 +67,81 @@ VenueSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         enforceVocabulary=True,
         default=DEFAULT_COUNTRY,
         storage=atapi.AnnotationStorage(),
-		widget=atapi.SelectionWidget(
-            label = _(u"State"),
-			description = _(u"Select the Country the venue is located in"),
+        widget=atapi.SelectionWidget(
+            label=_(u"State"),
+            description=_(u"Select the Country the venue is located in"),
         ),
-	),
+    ),
 
-	atapi.StringField('contactName',
+    atapi.StringField('contactName',
         required=False,
         searchable=True,
         languageIndependent=True,
         storage=atapi.AnnotationStorage(),
-		widget = atapi.StringWidget(
-            label = _(u"Contact person name"),
-			description = _(u""),
+        widget=atapi.StringWidget(
+            label=_(u"Contact person name"),
+            description=_(u""),
         ),
-	),
-	atapi.StringField('contactEmail',
+    ),
+    atapi.StringField('contactEmail',
         required=False,
         searchable=True,
         languageIndependent=True,
         storage=atapi.AnnotationStorage(),
-		validators=("isEmail"),
-		widget = atapi.StringWidget(
-            label = _(u"Contact Email"),
-			description = _(u""),
+        validators=("isEmail"),
+        widget=atapi.StringWidget(
+            label=_(u"Contact Email"),
+            description=_(u""),
         ),
-	),
-	atapi.StringField('contactPhone',
+    ),
+    atapi.StringField('contactPhone',
         required=False,
         searchable=True,
         languageIndependent=True,
         storage=atapi.AnnotationStorage(),
-		widget = atapi.StringWidget(
-            label = _(u"Contact phone"),
-			description = _(u""),
+        widget=atapi.StringWidget(
+            label=_(u"Contact phone"),
+            description=_(u""),
         ),
-	),
-	atapi.StringField('url',
+    ),
+    atapi.StringField('url',
         required=False,
         searchable=False,
         languageIndependent=True,
         storage=atapi.AnnotationStorage(),
-		validators=("isURL"),
-		widget = atapi.StringWidget(
-            label = _(u"Url"),
-			description = _(u"Use the form http://WEBSITE.TLD/"),
+        validators=("isURL"),
+        widget=atapi.StringWidget(
+            label=_(u"Url"),
+            description=_(u"Use the form http://WEBSITE.TLD/"),
         ),
-	),
-	atapi.TextField('cityMap',
+    ),
+    atapi.TextField('cityMap',
         required=False,
         searchable=False,
         languageIndependent=True,
         storage=atapi.AnnotationStorage(),
         default_content_type='text/html',
         default_output_type='text/html',
-		widget = atapi.TextAreaWidget(
-            label = _(u"City Map HTML Code"),
-			description = _(u"Iframe HTML Codefor Google Map, OpenStreetMap or the like"),
+        widget=atapi.TextAreaWidget(
+            label=_(u"City Map HTML Code"),
+            description=_(u"Iframe HTML Code for Google Map, "
+                          u"OpenStreetMap or the like"),
         ),
-	),
-	atapi.TextField('text',
+    ),
+    atapi.TextField('text',
         required=False,
         searchable=True,
         languageIndependent=True,
         storage=atapi.AnnotationStorage(),
         validators=('isTidyHtmlWithCleanup',),
         default_output_type='text/x-html-safe',
-		widget = atapi.RichWidget(
-            label = _(u"Text"),
-			description = _(u"Additional notes"),
-			rows = 5,
+        widget=atapi.RichWidget(
+            label=_(u"Text"),
+            description=_(u"Additional notes"),
+            rows=5,
             allow_file_upload=False,
         ),
-	),
+    ),
 ))
 
 
@@ -158,6 +159,7 @@ VenueSchema['location'].widget.visible = {'view': 'hidden',
 schemata.finalizeATCTSchema(VenueSchema,
                             folderish=False,
                             moveDiscussion=False)
+
 
 class Venue(base.ATCTContent):
     # security = ClassSecurityInfo()
@@ -189,16 +191,19 @@ class Venue(base.ATCTContent):
         txt = self.title
         txt += txt and self.street_1 and str(', ' + self.street_1)
         txt += txt and self.street_2 and str(', ' + self.street_2)
-        txt += txt and (self.zip_code or self.city) and str(', ' + self.zip_code + ' ' + self.city)
-        return txt #.decode('utf-8')
+        txt += txt and (self.zip_code or self.city) and\
+                str(', ' + self.zip_code + ' ' + self.city)
+        return txt  # .decode('utf-8')
 
     def get_venue_address(self):
         txt = self.street_1
         txt += txt and self.street_2 and str(', ' + self.street_2)
-        txt += txt and (self.zip_code or self.city) and str(', ' + self.zip_code + ' ' + self.city)
-        return txt #.decode('utf-8')
+        txt += txt and (self.zip_code or self.city) and\
+                str(', ' + self.zip_code + ' ' + self.city)
+        return txt  # .decode('utf-8')
 
 atapi.registerType(Venue, PROJECTNAME)
+
 
 @instance.memoize
 def CountryVocabulary(context):

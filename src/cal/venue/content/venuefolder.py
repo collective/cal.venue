@@ -20,6 +20,7 @@ schemata.finalizeATCTSchema(venuefolder_schema,
                             folderish=True,
                             moveDiscussion=False)
 
+
 class VenueFolder(folder.ATFolder):
     # security = ClassSecurityInfo()
     implements(IVenueFolder)
